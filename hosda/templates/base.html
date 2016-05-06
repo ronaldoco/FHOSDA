@@ -1,0 +1,49 @@
+﻿<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Projeto Framewotk HOSDA">
+    <meta name="author" content="Prof. MSc. Ronaldo Castro de Oliveira">
+	{% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    {% block title %}
+        <title>Framework HOSDA</title>
+    {% endblock title %}
+
+  	<style>
+    	body {
+     	 	padding-top: 1px;
+    	}
+  	</style>
+
+</head>
+
+<body>
+
+  {% include "menu.html" %}
+
+  <div class="container">   
+    {% block content %}
+
+    {% endblock content %}
+  </div>
+
+  <hr>
+  <footer>
+        <p align="right">&copy; Framework HBOSDA - 2016 - Todos os direitos reservados.</p>
+  </footer>	
+  {% block javascript %}
+	
+	<!-- Latest JQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>  
+
+    <!-- Latest compiled and minified JavaScript  -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> 
+  {% endblock javascript %}
+
+</body>
+</html>
+

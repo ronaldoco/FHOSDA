@@ -1,0 +1,171 @@
+﻿<!-- MENU -->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">	
+	<a href="{% url 'home' %}"> {% load staticfiles %} <img class="imagefloat" src="{% static "hosda/img/cabecalho.png" %}" alt="Início" title="Framework HOSDA" width="525" height="70" border="0">	</a>
+	<ul class="nav navbar-nav">
+		<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="nav-header">Pesquisa</li>
+				<li><a href="#">Nova Pesquisa</a></li>
+				<li><a href="#">Listar Pesquisas</a></li>
+				<li><a href="#">Abrir Pesquisa</a></li>
+				<li><a href="#">Imprimir Pesquisa</a></li>
+				<li class="divider"></li>
+				<li class="nav-header">Problema</li>
+                <li><a href="{% url 'problemaCadastro' %}">Novo Problema</a></li>
+				<li><a href="{% url 'problemaList' %}">Listar Problemas</a></li>
+                <li class="divider"></li>
+				<li class="nav-header">Algoritmo</li>
+				<li><a href="#">Novo Algoritmo</a></li>
+				<li><a href="#">Listar Algoritmos</a></li>
+				<li><a href="#">Parametros de Execução</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Pesquisador</li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Novo Pesquisador</a></li>
+				<li><a href="#">Logout</a></li>
+            </ul>
+        </li>
+		<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="nav-header">Biblioteca de Instâncias</li>
+				<li><a href="{% url 'bibliotecainstCadastro' %}">Nova Biblioteca</a></li>
+				<li><a href="{% url 'bibliotecainstList' %}">Listar Bibliotecas</a></li>
+				<li class="divider"></li>
+				<li class="nav-header">Instâncias</li>
+                <li><a href="#">Nova Instância</a></li>
+                <li><a href="#">Listar Instâncias</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Benchamarks</li>
+                <li><a href="#">Benchmark de Execução</a></li>
+                <li><a href="#">Benchmark de Teste</a></li>
+            </ul>
+        </li>
+		<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Parametrização <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="nav-header">Grupo de Teste</li>
+				<li><a href="#">Novo Grupo</a></li>
+                <li><a href="#">Listar Grupos</a></li>
+				<li class="divider"></li>
+                <li class="nav-header">Parametrização</li>
+				<li><a href="#">Executar</a></li>
+				<li><a href="#">Resultados</a></li>
+				<li><a href="#">Análise Estatística</a></li>				  
+                <li><a href="#">Especificar Parametros</a></li>                  
+            </ul>
+        </li>
+		<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Execução <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Executar Pesquisa</a></li>
+                <li><a href="#">Resultados Execução</a></li>                  
+            </ul>
+        </li>
+		<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Análise Estatística <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Executar Análise Estatística</a></li>
+                <li><a href="#">Resultados Análise</a></li>                  
+            </ul>
+        </li>
+		<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ajuda <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+				<li><a href="#">Ajuda Framework HOSDA</a></li>
+				<li><a href="#ajudaModal" data-toggle="modal" data-target="#ajudaModal">Sobre Framework HOSDA</a></li>				  
+				<li><a href="#">Referências</a></li>  
+				<li class="divider"></li>
+                <li><a href="{% url 'admin:index' %}">Administração do Sistema</a></li>
+            </ul>
+        </li>
+    </ul>
+    
+	<ul class="nav navbar-nav navbar-right">
+	  <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> 
+	  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Novo Pesquisador</a></li>      
+    </ul>		
+  </div>
+</nav>
+<br><br><br><br><br><br>
+<!---
+<div class="container">
+	<ol class="breadcrumb">
+		<li class="active">Informações: </li>
+		<li><a href="#">Nome usuário</a></li>
+		<li><a href="#">Nome da Pesquisa</a></li>
+		
+	</ol>
+</div>   -->
+
+<!-- Ajuda Modal HTML -->
+    <div id="ajudaModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>            
+					<h2 class="modal-title">Sobre o Framework HOSDA</h2>					
+                </div>
+                <div class="modal-body">
+                    <table border="0">
+						<tr>
+							<td style="width: 167px" align="center" valign="top">
+								{% load staticfiles %}
+								<img class="imagefloat" src="{% static "hosda/img/logo.png" %}" alt="" width="167" height="272" border="0">
+							</td>
+							<td>
+								<h4>Framework para otimização heurística com análise estatística dos dados</h4> 
+								
+								<p>Autor: Prof. MSc. Ronaldo Castro de Oliveira</p> 
+								<p>E-mail: <a href="mailto:ronaldo.co@ufu.br">ronaldo.co@ufu.br</a></p>
+								<p>Lattes: <a href="http://lattes.cnpq.br/6338660752822712"  target="_blank">http://lattes.cnpq.br/6338660752822712</a></p>
+								<p>Orientador: Prof. Dr. Roberto F. Tavares Neto</p>
+								<p>E-mail: <a href="mailto:tavares@dep.ufscar.br">tavares@dep.ufscar.br</a></p>
+								<p>Página web: <a href="www.fhosda.com.br">www.fhosda.com.br</a></p>
+								<p>Versão: 1.0</p>
+								<p>Todos os direitos reservados - 2016</p>
+								<p>Este framework é resultado da tese de doutorado desenvolvida no Curso de Engenharia de Produção da Universidade Federal de São Carlos - UFSCAR. </p>
+								<p><a href="http://www.dep.ufscar.br/">http://www.dep.ufscar.br/</a></p>
+							</td>
+						</tr>
+					</table>
+					
+					
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Fim Ajuda Modal -->
+	
+<!-- Login Modal HTML -->
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>            
+					<h3 class="modal-title">Login de usuário do Framework HOSDA</h3>	
+                </div>
+                <div class="modal-body">
+					<div class="loginmodal-container">
+						<form>
+							<input type="text" name="user" placeholder="Username">
+							<input type="password" name="pass" placeholder="Password">
+							<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+						</form>					
+						<div class="login-help">
+							<a href="#">Novo Usuário</a> - <a href="#">Esqueceu a Senha</a>
+						</div>
+					</div> 
+					
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Fim Login Modal -->

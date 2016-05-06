@@ -1,0 +1,59 @@
+﻿{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+    <title>Listagem de Biblioteca de Intâncias</title>
+{% endblock title %}
+ 
+{% block content %}
+
+	<h3><span class="label label-default">Lista de Todas as Bibliotecas de Intâncias</span></h3>
+
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<form class="navbar-form navbar-right" action="" method="get">
+			<input id="search_box" name="search_box" type="text" placeholder="Search..." class="form-control">
+			<button type="submit" class="btn btn-success form-control"><span class="glyphicon glyphicon-search"></span></button>
+		</form> 
+				
+		<!-- Table -->
+		
+		<table class="table table-condensed table-striped font-size=10px">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Descrição</th>
+					<th>Processo de Criação</th>
+					<th>Referência</th>
+					<th>Diretório</th>
+					<th>Tipo de Benchmark</th>
+					<th>Problema</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for bibliotecainst in bibliotecainst_list %}
+					<tr>
+						<td> {{ bibliotecainst.id }} </td>
+						<td> {{ bibliotecainst.nome }} </td>
+						<td> {{ bibliotecainst.descricao |truncatechars:30 }} </td>
+						<td> {{ bibliotecainst.processocriacao |truncatechars:25}} </td>
+						<td> {{ bibliotecainst.referencia |truncatechars:25}} </td>
+						<td> {{ bibliotecainst.diretorio |truncatechars:25}} </td>
+						<td> {{ bibliotecainst.tipobenchmark |truncatechars:25}} </td>
+						<td> {{ bibliotecainst.problema |truncatechars:25}} </td>
+						<td> 
+							<a href="/bibliotecainst/edit/{{ bibliotecainst.id }}" class="btn btn-primary btn-sm active" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+							<a href="/bibliotecainst/remove/{{ bibliotecainst.id }}" class="btn btn-primary btn-sm active" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>	
+		</table>
+	</div>
+	
+	
+	
+{% endblock content %}

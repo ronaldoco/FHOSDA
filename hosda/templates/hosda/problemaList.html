@@ -1,0 +1,54 @@
+﻿{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+    <title>Listagem de Problemas</title>
+{% endblock title %}
+ 
+{% block content %}
+
+	<h3><span class="label label-default">Lista de Todos os Problemas</span></h3>
+
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<form class="navbar-form navbar-right" action="" method="get">
+			<input id="search_box" name="search_box" type="text" placeholder="Search..." class="form-control">
+			<button type="submit" class="btn btn-success form-control"><span class="glyphicon glyphicon-search"></span></button>
+		</form> 
+				
+		<!-- Table -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Descricao</th>
+					<th>Tipo Problemas</th>
+					<th>Fluxo de Processo</th>
+					<th>Função Objetivo</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for problema in problema_list %}
+					<tr>
+						<td> {{ problema.id }} </td>
+						<td> {{ problema.nome }} </td>
+						<td> {{ problema.descricao |truncatechars:30 }} </td>
+						<td> {{ problema.tipoproblema |truncatechars:25}} </td>
+						<td> {{ problema.fluxoprocesso |truncatechars:25}} </td>
+						<td> {{ problema.funcaoobjetivo |truncatechars:25}} </td>
+						<td> 
+							<a href="/problema/edit/{{ problema.id }}" class="btn btn-primary btn-sm active" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+							<a href="/problema/remove/{{ problema.id }}" class="btn btn-primary btn-sm active" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>	
+		</table>
+	</div>
+	
+	
+	
+{% endblock content %}

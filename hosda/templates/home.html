@@ -1,0 +1,36 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<!-- Mensagem inicial do Framework -->
+<div class="well well-sm">
+	<h3>Bem vindo ao Framework HOSDA!</h3>
+    <h5>Este framework é resultado da tese de doutorado realizada no Departamento de Engenharia de Produção da Universidade Federal de São Carlos, desenvolvida pelo prof. Dr. Ronaldo Castro de Oliveira, sob orientação do prof. Dr. Roberto Fernandes Tavares Neto.</h5>
+    <p><a class="btn btn-primary">Saiba mais &raquo;</a></p>
+</div>
+
+<!-- Informações em colunas -->
+
+<div class="row">
+	<div class="col-sm-4">
+    	{% load staticfiles %}
+		<img class="imagefloat" src="{% static "hosda/img/logo-pq.png" %}" alt="" width="100" height="100" border="0">
+		<h3>Framework HOSDA</h3>
+        <p>O framework HOSDA foi desenvolvido com o intuito de apoiar pesquisas comparativas de otimização que fazem uso de heurísticas e meta-heurísticas na solução de problemas de Engenharia de Produção, sendo capaz de realizar análises estatísticas para determminação das melhores soluções.</p>
+        <p><a class="btn btn-primary" href="#">Detalhes &raquo;</a></p>
+    </div>
+    <div class="col-sm-4">
+    	{% load staticfiles %}
+		<img class="imagefloat" src="{% static "hosda/img/processo-pq.png" %}" alt="" width="170" height="100" border="5">
+		<h3>Processo</h3>
+        <p>O processo de desenvolvimento de pesquisas contempla além da definição de uma pesquisa, a especificação de benchamrks (conjunto de instâncias) de execução e uma etapa simplificada de parametrização dos algoritmos com um benchmark de teste.</p>
+        <p><a class="btn btn-primary" href="#">Detalhes &raquo;</a></p>
+    </div>
+    <div class="col-sm-4">
+    	{% load staticfiles %}
+		<img class="imagefloat" src="{% static "hosda/img/estatisticas-pq.png" %}" alt="" width="100" height="100" border="0">
+		<h3>Análises Estatísticas</h3>
+        <p>Os resultados obtidos por meio da execução de todas as soluções algorítmicas cadastradas são analisados estatísticamente através de métodos paramétricos e não paramétricos fornecendo ao pesquisador um conjunto de tabelas e gráficos que apoiam a pesquisa realizada.</p>
+        <p><a class="btn btn-primary" href="#">Detalhes &raquo;</a></p>
+     </div>
+</div>
+{% endblock content %}
