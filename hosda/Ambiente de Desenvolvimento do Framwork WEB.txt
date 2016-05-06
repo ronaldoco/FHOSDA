@@ -1,0 +1,123 @@
+Roteiro de instalação de ambiente de desenvolvimento Python - Windows 64: WEB
+
+############### Instalação do Python ##########################
+- Instalar Python 2.7.11 - 64 bits
+	python-2.7.11.amd64.msidirpip 
+
+OBS:Necessário adicionar alguns caminhos à variável de ambiente Path do Windows, para isso:
+  - clique com o botão direito em Computador -> Menu iniciar -> Propriedades -> Configurações avançadas do sistema -> Variáveis de Ambiente.
+  - Em variáveis do sistema, selecione Path e clique em Editar.
+  -  Na janela que abrir, adicione ;C:\Python27\;C:\Python27\Scripts; (sem as aspas) após o final do conteúdo do campo Valor da variável. Feito isso, clique em OK para confirmar.
+
+- Atualizar o pip do Python (entrar na pasta Scripts dentro da pasta do Python)
+	pip install pip --upgrade 
+
+- Instalar VirtualEnv - criador de ambientes virtuais do Pyhton para desenvolvimento
+	pip install virtualenv --no-site-packages
+
+- Instalar o Microsoft Visual C++ Compiler for Python 2.7
+	VCForPython27.msi
+
+############### Instalação do Ambiente de Desenvoovimento ##########################
+Criando um novo ambiente de desenvolvimento:vicd.15:37 06/04/2016
+	
+- Criar ambiente de desenvolvimento:
+	virtualenv <nome_amb>
+	c:\python27\scripts\virtualenv --no-site-packages ProjetoTese
+
+	Entrar no ambiente criado
+		cd <nome_amb>
+		cd Scripts
+		activate.bat	#ativa o ambiente
+############### Instalação Apps Necessários  ##########################
+- Instalar o Django para prog Web
+	pip install django==1.6
+	pip install Unipath==1.0
+	pip install django-bootstrap3==6.2.2
+
+Copiar requirements.txt para a pasta do ambiente de desenvolvimento criado
+
+- OBS: uma opção é instalar vários pacotes atraves de um aarquivo requeriments.txt
+	pip install -r requirements.txt
+		requeriments.txt
+			Django==1.6
+			Unipath==1.0
+			django-bootstrap3==6.2.2
+			mysqlclient
+			dj-static			
+
+		Outros apps
+			gunicorn==18.0
+			psycopg2==2.5.1
+			django-decouple==2.1
+			South==0.8.4
+			mock==1.0.1
+			django-extensions
+			#pygraphviz
+
+
+- Instalar o Conector do Python com MySQL
+	O que funcionou => pip install mysqlclient
+	pip install mysql-python
+	easy_install mysql-python 
+
+############### Criando o Projeto WEB ##########################
+- Criar a página do sistema - 
+	Na pasta do ambiente de desenvolvimento criado
+	python c:/ProjetoTese/scripts/django-admin.py startproject Framework .
+	
+	OBS: cuidado como ponto no final do comando - coloca o manage.py na pasta do ambiente
+
+- Testando o sistema - na pasta do projeto (personal_lib)
+	python c:/ProjetoWeb/scripts/activate	
+	python c:/ProjetoWeb/Personal_lib/manage.py runserver 8000
+	no browser: http://127.0.0.1:8000/
+
+############### Criando uma aplicação no projeto WEB ##########################
+- Criando uma aplicação (módulos com funcionalidades que podem ser reaproveitadas)
+	Entre na pasta do projeto criado 
+	python ../manage.py startapp hosda
+	Olhar site http://pinaxproject.com/ - (conjunto de apps para Django)
+
+Testando a nova aplicação:
+	- alterar views.py  dentro de library
+	def index(request):
+	    	return HttpResponse(u'Pagina principal do Projeto!')
+	- Alterar URL.py em personal_lib
+		 url(r'^$', 'library.views.index', name='index'),
+	- Rodar o servidor e testar a página
+
+############### Criando models ##########################
+- Criar a classe Library dentro de models.py com todos os atributos 
+class Library(models.Model):
+    title = models.CharField(max_length = 100)
+    description = models.TextField(blank=True, default='')
+    status = models.BooleanField(default=True)
+    friend_name = models.CharField(max_length = 100, blank = True, default = '')
+    friend_email = models.EmailField(max_length = 50, blank = True, default = '')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+############### Ajustado o banco de Dados ##########################
+- Ajustar o settings com a configuraçaõ de conexão com o MySQL
+#Banco MySQL  =====================================
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'personal_lib',   		#nome do banco de dados no MYSQL
+        'USER': 'root', 'PASSWORD': 'root',
+        'HOST': 'localhost', 'PORT': '3306',
+    }
+}
+
+- Para visualizar a estrutura de criação das tabelas 
+	python manage.py sql library
+- Criar a tabela SQL do banco a partir do model
+	python manage.py syncdb
+	OBS: criar um superuser (User: ronaldo; Senha: root)
+	Se necessário: python manage.py createsuperuser
+
+- É possivel criar os models a partir do banco 
+	python manage.py inspectdb > models.py
+	OBS: O settings deve conter a conexão com o banco
+	Copie o models.py para o projeto 
+	Execute o python manage.py syncdb para instalar dados extras (permissões ...)

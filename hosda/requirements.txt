@@ -1,0 +1,5 @@
+Django==1.6
+Unipath==1.0
+django-bootstrap3==6.2.2
+mysqlclient
+dj-static
