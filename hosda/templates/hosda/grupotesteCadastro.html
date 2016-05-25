@@ -3,16 +3,16 @@
 {% load bootstrap3 %}
 
 {% block title %}
-    <title>Cadastro de Biblioteca de Instâncias</title>
+    <title>Cadastro de Grupos de Teste de Parametrização</title>
 {% endblock title %}
  
 {% block content %}
-	<h3><span class="label label-default">Cadastro de Biblioteca de Instâncias</span></h3>
+	<h3><span class="label label-default">Cadastro de Grupos de Teste de Parametrização</span></h3>
     
-	<form class="form" action="{% url 'bibliotecainstSave' %}" method="post"> 
+	<form class="form" action="{% url 'grupotesteSave' %}" method="post"> 
 		<div class="form-group">
 			{% csrf_token %}
-			{% bootstrap_form bibliotecainst_form layout='horizontal'%}
+			{% bootstrap_form grupoteste_form layout='horizontal'%}
 			{% buttons %}
 				
 				<button type="submit" class="btn btn-primary active">Salvar  <span class="glyphicon glyphicon-save"></span></button>
@@ -23,7 +23,7 @@
 		
     </form>
 	
-	<h3><span class="label label-default">Todos as Bibliotecas de Intâncias</span></h3>
+	<h3><span class="label label-default">Todos os Grupos de Teste de Parametrização</span></h3>
 	
 	<div class="panel panel-primary">
 		<!-- Table -->
@@ -34,28 +34,20 @@
 					<th>Id</th>
 					<th>Nome</th>
 					<th>Descrição</th>
-					<th>Processo de Criação</th>
-					<th>Referência</th>
-					<th>Diretório</th>
-					<th>Tipo de Benchmark</th>
-					<th>Problema</th>
+					<th>Algoritmo</th>
 					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for bibliotecainst in bibliotecainst_list %}
+				{% for grupoteste in grupoteste_list %}
 					<tr>
-						<td> {{ bibliotecainst.id }} </td>
-						<td> {{ bibliotecainst.nome }} </td>
-						<td> {{ bibliotecainst.descricao |truncatechars:30 }} </td>
-						<td> {{ bibliotecainst.processocriacao |truncatechars:25}} </td>
-						<td> {{ bibliotecainst.referencia |truncatechars:25}} </td>
-						<td> {{ bibliotecainst.diretorio |truncatechars:25}} </td>
-						<td> {{ bibliotecainst.tipobenchmark |truncatechars:25}} </td>
-						<td> {{ bibliotecainst.problema |truncatechars:25}} </td>
+						<td> {{ grupoteste.id }} </td>
+						<td> {{ grupoteste.nome |truncatechars:30 }} </td>
+						<td> {{ grupoteste.descricao |truncatechars:60 }} </td>
+						<td> {{ grupoteste.algoritmo }} </td>
 						<td> 
-							<a href="/bibliotecainst/edit/{{ bibliotecainst.id }}" class="btn btn-primary btn-sm active" role="button" data-toggle="tooltip" data-placement="bottom" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
-							<a href="/bibliotecainst/remove/{{ bibliotecainst.id }}" class="btn btn-primary btn-sm active" role="button" data-toggle="tooltip" data-placement="bottom" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a>
+							<a href="/grupoteste/edit/{{ grupoteste.id }}" class="btn btn-primary btn-sm active" role="button" data-toggle="tooltip" data-placement="bottom" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+							<a href="/grupoteste/remove/{{ grupoteste.id }}" class="btn btn-primary btn-sm active" role="button" data-toggle="tooltip" data-placement="bottom" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a>
 						</td>
 					</tr>
 				{% endfor %}

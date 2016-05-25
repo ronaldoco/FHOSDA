@@ -8,7 +8,8 @@
 	{% load bootstrap3 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">-->
     {% block title %}
         <title>Framework HOSDA</title>
     {% endblock title %}
@@ -31,17 +32,69 @@
     {% endblock content %}
   </div>
 
-  <hr>
   <footer>
-        <p align="right">&copy; Framework HBOSDA - 2016 - Todos os direitos reservados.</p>
+	<div class="container">
+		<hr>
+        <p align="right">&copy; Framework HOSDA - 2016 - Todos os direitos reservados.</p>
+	</div>
   </footer>	
+  
+  <!-- Modal Confirm-delete -->
+	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="modalLabel">Excluir Item</h4>
+		  </div>
+		  <div class="modal-body">
+			<p>Você esta apagando um registro. Esta operação é ireversível.</p>
+			<p>Deseja realmente excluir este item?</p>
+			<p class="debug-url"></p>
+		  </div>
+		  <div class="modal-footer">
+			<button id ="btn-ok" type="button" class="btn btn-danger btn-ok">Excluir</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		  </div>
+		</div>
+	  </div>
+	</div> <!-- Fim Modal Remove-->
+  
+  
   {% block javascript %}
 	
 	<!-- Latest JQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>  
 
     <!-- Latest compiled and minified JavaScript  -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> 
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
+	<!-- Hover menu bootstrap  
+	<script src="/downloads/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+	-->
+	
+	<script>
+    // very simple to use!
+    $(document).ready(function() {
+      $('.js-activated').dropdownHover().dropdown();
+    });
+	</script>
+	
+	<script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		$('.debug-url').html('Registro: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+		
+    });
+	</script>
+	
+	<!--
+	<script>
+		//impressão de uma página
+		(function(){
+			window.print();
+		})();
+	</script> -->
   {% endblock javascript %}
 
 </body>

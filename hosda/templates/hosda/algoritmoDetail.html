@@ -1,0 +1,39 @@
+﻿{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+    <title>Detalhes do Algoritmo</title>
+{% endblock title %}
+ 
+{% block content %}
+
+	<h3><span class="label label-default">Detalhes do Algoritmo: {{ algoritmo.nome }}</span></h3>
+	<div align="right"> 
+		<a href= "{% url 'algoritmoList' %}" class="btn btn-primary btn-sm active">Voltar  <span class="glyphicon glyphicon-list"></span></a>
+		<a href="javascript: window.print();" class="btn btn-default btn-sm active" role="button">Imprimir <span class="glyphicon glyphicon-print"></span></button> </a>	
+	</div>
+	<div class="panel panel-primary">
+		<!-- Table -->
+		<table class="table table-condensed table-striped">
+			<tbody>
+					<tr><th>Id:</th><td>{{ algoritmo.id }}</td></tr>			
+					<tr><th>Nome:</th><td> {{ algoritmo.nome }}</td></tr>
+					<tr><th>Rótulo:</th><td> {{ algoritmo.rotulo }}</td></tr>
+					<tr><th>Descrição:</th><td> {{ algoritmo.descricao }}</td></tr>
+					<tr><th>Estratégias:</th><td> {{ algoritmo.estrategias }}</td></tr>
+					<tr><th>Referências:</th><td> {{ algoritmo.referencias }}</td></tr>
+					<tr><th>Ambiente de Desenvolvimento:</th><td> {{ algoritmo.ambientedesenvolvimento }}</td></tr>
+					<tr><th>Parâmetros:</th><td> {{ algoritmo.parametros }}</td></tr>
+					<tr><th>Nome do Arquivo:</th><td> {{ algoritmo.nomearquivo }}</td></tr>
+					<tr><th>Diretório:</th><td> {{ algoritmo.diretorio }}</td></tr>
+					<tr><th>Tipo de Execução:</th><td> {{ algoritmo.tipoexecucao }}</td></tr>
+					<tr><th>Heurística:</th><td> {{ algoritmo.heuristica }}</td></tr>
+					<tr><th>Usuário:</th><td> {{ algoritmo.usuario }}</td></tr>
+			</tbody>	
+		</table>
+	</div>
+	<a href= "{% url 'algoritmoList' %}" class="btn btn-primary btn-sm active">Voltar  <span class="glyphicon glyphicon-list"></span></a>
+	<a href="javascript: window.print();" class="btn btn-default btn-sm active" role="button">Imprimir <span class="glyphicon glyphicon-print"></span></button> </a>	
+	
+{% endblock content %}

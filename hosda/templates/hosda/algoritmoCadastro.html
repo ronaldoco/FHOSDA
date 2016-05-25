@@ -1,0 +1,78 @@
+﻿{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+    <title>Cadastro de Algoritmos</title>
+{% endblock title %}
+ 
+{% block content %}
+	<h3><span class="label label-default">Cadastro de Algoritmos</span></h3>
+    
+	<form class="form" action="{% url 'algoritmoSave' %}" method="post"> 
+		<div class="form-group">
+			{% csrf_token %}
+			{% bootstrap_form algoritmo_form layout='horizontal'%}
+			{% buttons %}	
+				<button type="submit" class="btn btn-success active">Salvar  <span class="glyphicon glyphicon-save"></span></button>
+				<a href="{% url 'home' %}" class="btn btn-default active" role="button">Cancelar <span class="glyphicon glyphicon-remove"></span></button> </a>	
+			{% endbuttons %}
+		</div>
+    </form>
+	
+	<h3><span class="label label-default">Lista de Todos os Algoritmos</span></h3>
+	
+	<div class="panel panel-primary">
+		<!-- Table -->
+		
+		<table class="table table-condensed table-striped font-size=10px">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Rotulo</th>
+					<th>Descrição</th>
+					<th>Nome do Arqivo</th>
+					<th>Heurística</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for algoritmo in algoritmo_list %}
+					<tr>
+						<td> {{ algoritmo.id }} </td>
+						<td> {{ algoritmo.nome |truncatechars:45}} </td>
+						<td> {{ algoritmo.rotulo |truncatechars:6}} </td>
+						<td> {{ algoritmo.descricao |truncatechars:45 }} </td>
+						<td> {{ algoritmo.nomearquivo |truncatechars:25}} </td>
+						<td> {{ algoritmo.heuristica |truncatechars:25}} </td>
+						<td> 
+							<a href="/algoritmo/edit/{{ algoritmo.id }}"
+								class="btn btn-warning btn-xs active"
+								role="button"
+								data-toggle="tooltip"
+								data-placement="bottom"
+								title="Editar">
+								<span class="glyphicon glyphicon-edit"></span>
+							</a>
+							<a href="/algoritmo/remove/{{ algoritmo.id }}"
+								class="btn btn-danger btn-xs active"
+								role="button"
+								type="submit"
+								data-toggle="tooltip"
+								data-placement="bottom"
+								title="Excluir"
+								onclick="return confirm('Você esta apagando um registro e esta operação é irreversível.\nDeseja realmente excluir?\nItem: {{ algoritmo.id }}\nNome: {{algoritmo.nome }}')">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>	
+		</table>
+		
+	</div>
+
+{% endblock content %}
+
+	

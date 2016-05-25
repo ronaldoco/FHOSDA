@@ -1,0 +1,30 @@
+<!--Faz o controle do formulário verificando erros gerados - Booststrap -->
+{% for field in form %}
+	<div class="control-group {% if fild.errors %} error {% endif %}">
+		<div class="control-label"> {{ field.label_tag }}
+		</div>
+		<div class="controls">
+			{{ field }}
+			{% if field.errors %}
+				<span class="help-inline"> {{ filed.errors | join: ", "}}</span>
+			{% endif %}
+			{% if field.help.text %}
+				<p class="help-block"> {{ field.help_text }} </p>
+			{% endif %}
+	</div>
+{% endfor %}
+
+
+<!-- Para chamar cada campo de um formulário separadamente -->
+	...
+	{% csrf_token %}
+	<div class="control-group">
+		<label class="control-label" for={{ form.name.auto_id }}">
+			{{ form.name.label }}
+		</label>
+		<div class="controls">
+			{{ form.name }}
+		</div>
+	</div>
+	...
+	
